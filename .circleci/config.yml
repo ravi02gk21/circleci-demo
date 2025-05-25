@@ -1,0 +1,12 @@
+version: 2.1
+
+jobs:
+  say-hello:
+    docker: 
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+        name: Run hello script
+        command: bash app/hello.sh
+       
