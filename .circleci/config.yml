@@ -6,27 +6,29 @@ jobs:
       - image: cimg/python:3.10
     steps:
       - checkout
+
       - run:
           name: Install dependencies
           command: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
+
       - run:
-          name: Run tests
+          name: Run pytest and generate report
           command: |
             mkdir test-results
             pytest app/test_hello.py --junitxml=test-results/results.xml
 
       - store_test_results:
-          path:test-results
+          path: test-results
 
       - store_artifacts:
           path: test-results
           destination: test-report
-            
+
 workflows:
   version: 2
   test-workflow:
     jobs:
       - test-python
-       
+
